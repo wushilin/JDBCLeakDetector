@@ -10,7 +10,7 @@ Detect your JDBC connection, statement, resultset leaks (where you forgot to clo
 # Example use case
 Download the jar at:
 
-`https://s01.oss.sonatype.org/service/local/repo_groups/staging/content/net/wushilin/jdbcleakdetector/1.0.0/jdbcleakdetector-1.0.0.jar`
+`https://s01.oss.sonatype.org/service/local/repo_groups/staging/content/net/wushilin/jdbcleakdetector/1.0.1/jdbcleakdetector-1.0.1.jar`
 
 Put in your library classpath!
 
