@@ -11,6 +11,8 @@ public class WrappingPreparedStatement implements PreparedStatement {
     private DebuggingDataSource ds;
     private PreparedStatement src;
 
+    private long created = System.currentTimeMillis();
+
     private Connection conn;
     public WrappingPreparedStatement(DebuggingDataSource ds, Connection conn, PreparedStatement stmt) {
         this.ds = ds;
@@ -571,7 +573,8 @@ public class WrappingPreparedStatement implements PreparedStatement {
     }
 
     public String toString() {
-        return String.format(this.getClass().getSimpleName() + "@" + System.identityHashCode(this) + "[ %s ]", src);
+        return String.format("[Created %d ms ago] "+this.getClass().getSimpleName()+"@" + System.identityHashCode(this) + "[ %s ]", System.currentTimeMillis() - created, src);
+
     }
 }
 

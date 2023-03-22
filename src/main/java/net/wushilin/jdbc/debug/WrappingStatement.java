@@ -6,6 +6,8 @@ public class WrappingStatement implements Statement {
     private DebuggingDataSource ds;
     private Statement src;
     private Connection conn;
+
+    private long created = System.currentTimeMillis();
     public WrappingStatement(DebuggingDataSource ds, Connection conn, Statement stmt) {
         this.ds = ds;
         this.src = stmt;
@@ -273,6 +275,7 @@ public class WrappingStatement implements Statement {
     }
 
     public String toString() {
-        return String.format(this.getClass().getSimpleName() + "@" + System.identityHashCode(this) + "[ %s ]", src);
+        return String.format("[Created %d ms ago] "+this.getClass().getSimpleName()+"@" + System.identityHashCode(this) + "[ %s ]", System.currentTimeMillis() - created, src);
+
     }
 }

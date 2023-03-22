@@ -13,6 +13,7 @@ public class WrappingCallableStatement implements  CallableStatement{
     private DebuggingDataSource ds;
     private CallableStatement src;
 
+    private long created = System.currentTimeMillis();
     private Connection conn;
     public WrappingCallableStatement(DebuggingDataSource ds, Connection conn, CallableStatement stmt) {
         this.ds = ds;
@@ -948,6 +949,7 @@ public class WrappingCallableStatement implements  CallableStatement{
     }
 
     public String toString() {
-        return String.format("WrappingCallableStatement@" + System.identityHashCode(this) + "[ %s ]", src);
+        return String.format("[Created %d ms ago] "+this.getClass().getSimpleName()+"@" + System.identityHashCode(this) + "[ %s ]", System.currentTimeMillis() - created, src);
+
     }
 }

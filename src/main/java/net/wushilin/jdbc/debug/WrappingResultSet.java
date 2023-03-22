@@ -12,6 +12,7 @@ public class WrappingResultSet implements ResultSet {
     private DebuggingDataSource ds;
     private ResultSet src;
 
+    private long created = System.currentTimeMillis();
     private Statement stmt;
     public WrappingResultSet(DebuggingDataSource ds, Statement stmt, ResultSet src) {
         this.ds = ds;
@@ -999,7 +1000,8 @@ public class WrappingResultSet implements ResultSet {
     }
 
     public String toString() {
-        return String.format(this.getClass().getSimpleName() + "@" + System.identityHashCode(this) + "[ %s ]", src);
+        return String.format("[Created %d ms ago] "+this.getClass().getSimpleName()+"@" + System.identityHashCode(this) + "[ %s ]", System.currentTimeMillis() - created, src);
+
     }
 
 }

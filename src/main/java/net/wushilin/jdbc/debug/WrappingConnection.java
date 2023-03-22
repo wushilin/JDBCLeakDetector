@@ -7,6 +7,8 @@ import java.util.concurrent.Executor;
 
 public class WrappingConnection implements Connection {
     private Connection src;
+
+    private long created = System.currentTimeMillis();
     private DebuggingDataSource ds;
     public WrappingConnection(DebuggingDataSource source, Connection src) {
         this.src = src;
@@ -284,6 +286,6 @@ public class WrappingConnection implements Connection {
     }
 
     public String toString() {
-        return String.format("WrappingConnection@" + System.identityHashCode(this) + "[ %s ]", src);
+        return String.format("[Created %d ms ago] "+this.getClass().getSimpleName()+"@" + System.identityHashCode(this) + "[ %s ]", System.currentTimeMillis() - created, src);
     }
 }

@@ -3,6 +3,7 @@ Detect your JDBC connection, statement, resultset leaks (where you forgot to clo
 
 
 # Releases
+- v1.0.1 Added creation age in debug log
 - v1.0.0 Initial release
 
 
