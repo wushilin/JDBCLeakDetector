@@ -166,52 +166,57 @@ public class DebuggingDataSource implements DataSource {
 
 
     protected ResultSet wrap(Statement stmt, ResultSet what) {
-        try {
-            StackTraceElement[] elements = Thread.currentThread().getStackTrace();
-            record(what, elements);
-        } catch(Throwable ex) {
-            ex.printStackTrace();
-        }
-        return new WrappingResultSet(this, stmt, what);
-    }
-
-    protected Statement wrap(Connection conn, Statement stmt) {
-        try {
-            StackTraceElement[] elements = Thread.currentThread().getStackTrace();
-            record(stmt, elements);
-        } catch(Throwable ex) {
-            ex.printStackTrace();
-        }
-        return new WrappingStatement(this, conn, stmt);
-    }
-
-    protected PreparedStatement wrap(Connection conn, PreparedStatement stmt) {
-        try {
-            StackTraceElement[] elements = Thread.currentThread().getStackTrace();
-            record(stmt, elements);
-        } catch(Throwable ex) {
-            ex.printStackTrace();
-        }
-        return new WrappingPreparedStatement(this, conn, stmt);
-    }
-    protected CallableStatement wrap(Connection conn, CallableStatement stmt) {
-        try {
-            StackTraceElement[] elements = Thread.currentThread().getStackTrace();
-            record(stmt, elements);
-        } catch(Throwable ex) {
-            ex.printStackTrace();
-        }
-        return new WrappingCallableStatement(this, conn, stmt);
-    }
-
-    private Connection wrap(Connection result) {
+        ResultSet result = new WrappingResultSet(this, stmt, what);
         try {
             StackTraceElement[] elements = Thread.currentThread().getStackTrace();
             record(result, elements);
         } catch(Throwable ex) {
             ex.printStackTrace();
         }
-        return new WrappingConnection(this, result);
+        return result;
+    }
+
+    protected Statement wrap(Connection conn, Statement stmt) {
+        Statement result = new WrappingStatement(this, conn, stmt);
+        try {
+            StackTraceElement[] elements = Thread.currentThread().getStackTrace();
+            record(result, elements);
+        } catch(Throwable ex) {
+            ex.printStackTrace();
+        }
+        return result;
+    }
+
+    protected PreparedStatement wrap(Connection conn, PreparedStatement stmt) {
+        PreparedStatement result = new WrappingPreparedStatement(this, conn, stmt);
+        try {
+            StackTraceElement[] elements = Thread.currentThread().getStackTrace();
+            record(result, elements);
+        } catch(Throwable ex) {
+            ex.printStackTrace();
+        }
+        return result;
+    }
+    protected CallableStatement wrap(Connection conn, CallableStatement stmt) {
+        CallableStatement result = new WrappingCallableStatement(this, conn, stmt);
+        try {
+            StackTraceElement[] elements = Thread.currentThread().getStackTrace();
+            record(result, elements);
+        } catch(Throwable ex) {
+            ex.printStackTrace();
+        }
+        return result;
+    }
+
+    private Connection wrap(Connection what) {
+        Connection result = new WrappingConnection(this, what);
+        try {
+            StackTraceElement[] elements = Thread.currentThread().getStackTrace();
+            record(result, elements);
+        } catch(Throwable ex) {
+            ex.printStackTrace();
+        }
+        return result;
     }
 
     protected synchronized void record(Connection conn, StackTraceElement[] trace) {
