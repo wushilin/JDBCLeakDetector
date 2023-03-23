@@ -27,7 +27,7 @@ public class WrappingResultSet implements ResultSet {
     @Override
     public void close() throws SQLException {
         src.close();
-        ds.release(src);
+        ds.release(this);
     }
 
     @Override

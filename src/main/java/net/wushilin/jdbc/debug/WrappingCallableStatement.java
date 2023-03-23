@@ -749,7 +749,7 @@ public class WrappingCallableStatement implements  CallableStatement{
 
     public void close() throws SQLException {
         src.close();
-        ds.release(src);
+        ds.release(this);
     }
 
     public int getMaxFieldSize() throws SQLException {

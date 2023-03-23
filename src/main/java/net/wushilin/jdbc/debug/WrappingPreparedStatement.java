@@ -324,7 +324,7 @@ public class WrappingPreparedStatement implements PreparedStatement {
     @Override
     public void close() throws SQLException {
         src.close();
-        ds.release(src);
+        ds.release(this);
     }
 
     @Override

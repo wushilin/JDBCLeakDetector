@@ -26,7 +26,7 @@ public class WrappingStatement implements Statement {
     @Override
     public void close() throws SQLException {
         src.close();
-        ds.release(src);
+        ds.release(this);
     }
 
     @Override
