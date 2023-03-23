@@ -3,14 +3,16 @@ Detect your JDBC connection, statement, resultset leaks (where you forgot to clo
 
 
 # Releases
-- v1.0.2 Added creation age in debug log
+- v1.0.3 Added time since creation for each Connection, Statement and ResultSet
+- v1.0.2 Don't use
+- v1.0.1 Don't use
 - v1.0.0 Initial release
 
 
 # Example use case
 Download the jar at:
 
-`https://s01.oss.sonatype.org/service/local/repo_groups/staging/content/net/wushilin/jdbcleakdetector/1.0.2/jdbcleakdetector-1.0.2.jar`
+`https://s01.oss.sonatype.org/service/local/repo_groups/staging/content/net/wushilin/jdbcleakdetector/1.0.3/jdbcleakdetector-1.0.3.jar`
 
 Put in your library classpath!
 
